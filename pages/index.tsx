@@ -1,8 +1,6 @@
 import { Inter } from 'next/font/google'
-import { Mitr } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
-const mitr = Mitr({ subsets: ['latin-ext'], weight: '300'})
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -14,7 +12,6 @@ export default function Home({}) {
   if (session) {
     return (
       <div className='flex flex-col gap-4 px-12 py-8 rounded-lg'>
-        <h1 className={`${mitr.className} text-3xl text-green-300`}>Nourish</h1>
         <h1>Signed in as {session?.user.email}</h1>
         <Link href='/profile'>Navigate to Profile</Link>
         <button onClick={() => signOut()}>Sign Out</button>
