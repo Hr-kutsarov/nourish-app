@@ -1,27 +1,42 @@
-import { useSession } from "next-auth/react"
-import Link from 'next/link'
-import {IoIosHeartHalf} from 'react-icons/io'
-import {RxPerson} from 'react-icons/rx'
-import { HiBattery50, HiOutlineBars3 } from "react-icons/hi2"
-import UserControlButton from "./user-control-button"
+import { useSession, signOut } from "next-auth/react"
 
-import { useMemo } from "react"
+import {RxLockOpen1} from 'react-icons/rx'
+import { HiOutlineBars3 } from "react-icons/hi2"
+import { RxExit } from 'react-icons/rx'
+import UserControlButton from "./user-control-button"
+import useAuthModal from "@/hooks/useAuthModal"
+import { useCallback } from "react"
+
+
 export function UserControls() {
     const { data: session }: any = useSession()
+    const handler = useAuthModal()
 
-    const controlBtns = useMemo(() => {
+    const closeModal = useCallback(() => {
+        handler.onOpen()
+    }, [handler.isOpen])
 
-    }, [])
     if (session) {
         return (
-            <span className="flex flex-row gap-2 border-slate-400 border-1 text-slate-600 py-2 px-3 items-center text-3xl">
-                <UserControlButton icon={IoIosHeartHalf} href="/stats" />
+            <span className="flex flex-row gap-2 text-slate-600 py-2 px-3 items-center text-3xl">
+                <button className='text-lg' onClick={() => {signOut()}}><RxExit /></button>
                 <UserControlButton icon={HiOutlineBars3} href='/profile' />
+            </span>
+        )
+    } else {
+        return (
+            <span 
+            className="flex text-3xl px-6 py-4 text-slate-600 cursor-pointer gap-2"
+            onClick={(e) => {
+                e.stopPropagation()
+                closeModal()
+            }}>
+                <RxLockOpen1 />
             </span>
         )
     }
     
-    return null
+
 }
 
 export default UserControls;
