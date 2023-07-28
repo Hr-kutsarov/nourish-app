@@ -1,13 +1,8 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-  name: string
-}
-
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' })
+// load some dummy data
+export const getPosts = async () => {
+  const data = await fetch('https://jsonplaceholder.typicode.com/posts', {method: 'GET'})
+  const posts = await data.json()
+  return posts
 }
