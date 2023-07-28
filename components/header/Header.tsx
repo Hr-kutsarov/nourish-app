@@ -4,7 +4,7 @@ import LogoBox from './LogoBox'
 
 const Header: React.FC = () => {
     return (
-        <span className="flex w-full min-h-[5vh] shadow-md justify-between items-center p-2">
+        <span className="flex w-full h-[8vh] shadow-md justify-between items-center p-2 relative">
             <span className='flex flex-row items-center gap-2'>
                 <LogoBox />
                 <TopsideNav />
