@@ -9,7 +9,10 @@ import {
 
 } from 'react-icons/io'
 
+import {usePathname} from 'next/navigation';
+
 const TopsideNav: React.FC = () => {
+    const pathname = usePathname()
 
     const navbarLinks = useMemo(() => [
         {
@@ -17,37 +20,37 @@ const TopsideNav: React.FC = () => {
              icon: IoMdSearch,
              description: 'test',
              href: '/search',
-             active: false
+             active: pathname === '/search'
         },
         {
             label: 'Browse',
             icon: IoIosFolderOpen,
             description: 'test',
             href: '/browse',
-            active: false
+            active: pathname === '/browse'
         },
         {
             label: 'Recipes',
             icon: IoIosList,
             description: 'test',
             href: '/recipes',
-            active: false
+            active: pathname === '/recipes'
         },
         {
             label: 'Tips',
             icon: IoIosApps,
             description: 'test',
             href: '/tips',
-            active: false
+            active: pathname === '/tips'
         },
         {
             label: 'About',
             icon: IoIosHelpCircleOutline,
             description: 'test',
             href: '/project-info',
-            active: false
+            active: pathname === '/project-info'
         }
-    ], [])
+    ], [pathname])
 
     return (
         <nav className='

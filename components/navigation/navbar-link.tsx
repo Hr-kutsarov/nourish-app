@@ -27,10 +27,7 @@ const NavbarLink: React.FC<NavbarLinkProps> = ({
             cursor-pointer
             hover:text-slate-300
             font-md
-            ${active ? 'border-b-2' : 'border-b-0'}
-            ${active ? 'text-slate-300' : "text-slate-600"}
-            ${active ? 'border-b-2' : "border-0"}
-            ${active ? ' border-slate-300' : 'border-transparent'}
+            ${active ? 'text-green-700/70' : "text-slate-600"}
 
         `}>
             <Icon size={20} />
